@@ -1,0 +1,23 @@
+// Colors
+$header-bg-color: #2c2e31;
+
+// Font
+$font-family-sans-serif: 'Roboto', serif;
+$base-font-size: 1.3rem;
+$small-font-size: 1.1rem;
+$border-color: #ddd;
+
+// Spacers
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: ($spacer * 0.9),
+  4: ($spacer * 1.5),
+  5: ($spacer * 3),
+  6: ($spacer * 6),
+  7: ($spacer * 16)
+);
+
+$grid-gutter-width: 20px;

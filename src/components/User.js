@@ -1,4 +1,4 @@
-import React, {useEffect,useState,Component} from 'react';
+import React, {Component} from 'react';
 import Parser from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -23,7 +23,7 @@ export class User extends Component {
     const { updateSelectedUser } = this.props;
     updateSelectedUser(user);
   }
-
+  
   componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
     const { userData } = this.props;

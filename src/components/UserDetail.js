@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, {Component} from 'react';
 import Parser from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -12,17 +12,41 @@ import moment from 'moment';
 
 
 
-const UserDetail = props => {
-  let { userData,updateDeleteUser,addDeleteUser,users,markeDeleteUser } = props;
-  const [user, setUser] = useState(userData);
+export class UserDetail extends Component {
+  
+  constructor(args) {
+    super(args);
+    this.state = {
+      user: {},
 
-   function deleteUser(){
-    const copy = Object.assign({}, user);
-    const start = moment().add(0.2, 'minutes');
+    };
+  }
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+   if(prevProps.user != this.props.user) {
+     this.setState({user:this.props.user});
+   }
+    
+   
+  }
+  componentDidMount() {
+  
+    // Changing the state after 2 sec
+    // from the time when the component
+    // is rendered
+    if(this.props.user){
+      this.setState({user:this.props.user});
+    }
+    
+  }
+    deleteUser(){
+      let { userData,updateDeleteUser,addDeleteUser,users,markeDeleteUser } = this.props;
+    const copy = Object.assign({}, this.state.user);
+    const start = moment().add(2, 'minutes');
     copy.time = start;
     let index_match = 0;
     users.map((user1,index) => {
-      if(user1.username == user.username){
+      if(user1.username == this.state.user.username){
         index_match = index;
       }
       
@@ -39,8 +63,12 @@ const UserDetail = props => {
       }
     markeDeleteUser(copy);
     addDeleteUser(copy);
-    setUser(next);
+    this.setState({user:next});
    }
+
+   render() {
+    const { deleteUser } = this.props;
+    const { user } = this.state;
   return (
     <div className="container-wrapper">
       <div className="detail-container d-flex justify-content-center align-items-center ">
@@ -55,6 +83,7 @@ const UserDetail = props => {
     </div>
     </div>
   );
+   }
 };
 
 UserDetail.propTypes = {
@@ -63,8 +92,12 @@ UserDetail.propTypes = {
   updateDeleteUser: PropTypes.func.isRequired,
   addDeleteUser:PropTypes.func.isRequired,
   markeDeleteUser:PropTypes.func.isRequired,
+  user:PropTypes.object.isRequired,
 };
 
+const mapStateToProps = state => ({
+  user: state.user,
+});
 
 const mapDispatchToProps = dispatch => ({
   updateDeleteUser: (user) => dispatch(updateDeleteUserF(user)),
@@ -72,4 +105,4 @@ const mapDispatchToProps = dispatch => ({
   markeDeleteUser: (user) => dispatch(markeDeleteUserF(user)),
 });
 
-export default connect(null, mapDispatchToProps)(UserDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetail);

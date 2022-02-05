@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 class AppRouter extends Component {
   componentDidMount() {
     const { fetchData } = this.props;
-    fetchData('https://randomuser.me/api/?results=2&nat=us');
+    fetchData('https://randomuser.me/api/?results=20&nat=us');
   }
 
   render() {

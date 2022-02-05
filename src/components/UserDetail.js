@@ -77,7 +77,7 @@ export class UserDetail extends Component {
       <img src={user.image} alt="user" className="mr-2 img" />
       </div>
       <div className="button-wrapper text-center">
-          <button className="btn btn-info  btn-lg" onClick={() => deleteUser()}>Delete</button>
+          <button className="btn btn-info  btn-lg" onClick={() => this.deleteUser()}>Delete</button>
       </div>
     </div>
     </div>

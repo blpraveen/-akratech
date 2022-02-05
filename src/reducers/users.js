@@ -78,13 +78,26 @@ export const deletedUser = (state = [], action) => {
       return state
     }
     case 'UNDO_USER': {
-      return state.map(user => {
-        if (user.username != action.username) {
-          return user;  
+      return state.filter(user => {
+        if (user.username != action.updatedData.username) {
+          return true;  
         }
-        return user;
+        return false;
       });
     }
+    default:
+        return state;
+  }
+};
+
+
+export const userTimer = (state = {}, action) => {
+  
+  switch (action.type) {
+    case 'REMOVE_TIMER': {
+      return  action.updatedData
+    }
+    
     default:
         return state;
   }

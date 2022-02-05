@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { users, usersAreLoading,usersCount,user,deletedUser} from './users';
+import { users, usersAreLoading,usersCount,user,deletedUser,userTimer} from './users';
 import { filters } from './filters';
 
 export default combineReducers({
@@ -9,4 +9,5 @@ export default combineReducers({
   usersCount,
   deletedUser,
   filters,
+  userTimer
 });

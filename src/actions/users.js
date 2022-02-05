@@ -51,9 +51,8 @@ export const updateUser = (username, updatedData) => ({
 });
 
 
-export const undoDeleteUser = (username, updatedData) => ({
+export const undoDeleteUser = ( updatedData) => ({
   type: 'UNDO_USER',
-  username,
   updatedData,
 });
 
@@ -75,6 +74,15 @@ export const markeDeleteUser = (updatedData) => ({
   type: 'MARK_DELETE_USER',
   updatedData,
 });
+
+export const   removeTimerUser =  (updatedData) => ({
+  type: 'REMOVE_TIMER',
+  updatedData,
+});
+
+
+
+
 
 
 

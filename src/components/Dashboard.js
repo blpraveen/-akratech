@@ -9,10 +9,7 @@ import Loading from './Loading';
 import { addDeleteUser as addDeleteUserF } from '../actions/users';
 
 export class Dashboard extends Component {
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    this.renderUsers();
-  }
+
 
   renderUsers = () => {
     
@@ -37,16 +34,21 @@ export class Dashboard extends Component {
         lastName,
         image: user.image,
         username: user.username,
-        cell: user.cell,
-        time:null
+        cell: user.cell
       };
+      if(user.time){
+        userData.time = user.time;
+      } else {
+        userData.time = null;
+        console.log('asdas');
+      }
       if(deletedUser){
-
         let duser = deletedUser.filter(u2 => user.username === u2.username);
         if(duser.length){
           userData.time = duser[0].time
           users[index] = user;
         }
+
       }
       if(user){
         return <User key={user.username} userData={userData} />;
